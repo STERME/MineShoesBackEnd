@@ -13,16 +13,16 @@ import db.DBConnection;
 import db.DBConnectionFactory;
 
 /**
- * Servlet implementation class Insertshose
+ * Servlet implementation class DeleteShoses
  */
-@WebServlet("/insert")
-public class Insertshose extends HttpServlet {
+@WebServlet("/delete")
+public class DeleteShoses extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Insertshose() {
+    public DeleteShoses() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,19 +43,9 @@ public class Insertshose extends HttpServlet {
 		DBConnection connection = DBConnectionFactory.getConnection();
 		try {
 			JSONObject input = RpcHelper.readJSONObject(request);
-			String shosesid = input.getString("shose_id");
-			String name = input.getString("name");
-			String category = input.getString("category");
-			String color = input.getString("color");
-			String vendor = input.getString("vendor");
-			String description = input.getString("description");	
-			String imageUrl = input.getString("image_url");	
-			String price = input.getString("price");
-			String size = input.getString("size");
-			String width = input.getString("width");
-			String type = input.getString("type");
+			String shosesid = input.getString("shoses_id");
 			JSONObject obj = new JSONObject();
-			if (connection.insertShoses(shosesid, name, category, color, vendor, description, imageUrl, price, size, width, type)) {
+			if (connection.deleteShoses(shosesid)) {
 				obj.put("status", "OK");
 			} else {
 				obj.put("status", "error in the server");
@@ -68,5 +58,5 @@ public class Insertshose extends HttpServlet {
 			connection.close();
 		}
 	}
-}
 
+}

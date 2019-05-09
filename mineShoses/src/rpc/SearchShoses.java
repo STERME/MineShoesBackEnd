@@ -35,9 +35,9 @@ public class SearchShoses extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DBConnection conn = DBConnectionFactory.getConnection(); 
-		List<shoses> allShoses = conn.searchAllShoses();
-		JSONArray array = new JSONArray();
+		DBConnection conn = DBConnectionFactory.getConnection();  // 连接数据库
+		List<shoses> allShoses = conn.searchAllShoses(); //数据库查找
+		JSONArray array = new JSONArray(); // 将找回来的数据变成json形式返回
 		for (shoses item : allShoses) {
 			array.put(item.toJSONObject());
 		}

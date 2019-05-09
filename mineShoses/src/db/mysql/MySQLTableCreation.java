@@ -41,9 +41,10 @@ public class MySQLTableCreation {
 								+ "type VARCHAR(255),"
 								+ "description VARCHAR(255),"
 								+ "image_url VARCHAR(255),"
-								+ "price FLOAT,"
-								+ "size FLOAT,"
-								+ "width FLOAT,"							
+								+ "price VARCHAR(255),"
+								+ "size VARCHAR(255),"
+								+ "width VARCHAR(255),"	
+								+ "msrp VARCHAR(255),"		
 								+ "PRIMARY KEY (shoses_id, category, type)"
 								+ ")";
 		  statement.executeUpdate(sql);
@@ -70,7 +71,7 @@ public class MySQLTableCreation {
 		statement.executeUpdate(sql);
 		
 		sql = "INSERT INTO shoses VALUES('1', 'Nike 320', 'brown', 'Nike', 'man', 'joke', 'nice shoses',"
-				+ " 'www.baidu.com', '40', '44', '22')";
+				+ " 'www.baidu.com', '40', '44', '22', '123')";
 		statement.executeUpdate(sql);
 			conn.close();
 			System.out.println("Import done successfully");

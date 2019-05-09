@@ -29,9 +29,9 @@ public interface DBConnection {
 	 * 
 	 * @return insert success or not
 	 */
-    public boolean insertShoses(String shoses_id, String name, String category, String color, String vendor, String description, String image_url, String price, String size, String width, String type);
+    public boolean insertShoses(String shoses_id, String name, String category, String color, String vendor, String description, String image_url, String price, String size, String width, String type, String msrp);
 	   
-   
+   public boolean deleteShoses(String shoses_id);
 	
 
 	/**

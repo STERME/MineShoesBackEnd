@@ -116,7 +116,7 @@ public class MySQLConnection implements DBConnection {
 				builder.setSize(rs.getString("size"));
 				builder.setWidth(rs.getString("width"));
 				builder.setType(rs.getString("type"));
-				
+				builder.setMsrp(rs.getString("msrp"));
 				allShoses.add(builder.build()); // 创建一个shose object
 				
 			}
@@ -125,26 +125,26 @@ public class MySQLConnection implements DBConnection {
 		}
 		return allShoses;
 	}
-	public boolean insertShoses(String shoses_id, String name, String category, String color, String vendor, String description, String image_url, String price, String size, String width, String type) {
+	public boolean insertShoses(String shoses_id, String name, String category, String color, String vendor, String description, String image_url, String price, String size, String width, String type, String msrp) {	
 		if (conn == null) {
 			System.err.println("DB connection failed");
 			return false;
 		}
-
 		try {
-			String sql = "INSERT IGNORE INTO shoses VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT IGNORE INTO shoses VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, shoses_id);
 			ps.setString(2, name);
-			ps.setString(3, category);
-			ps.setString(4, color);
-			ps.setString(5, vendor);
-			ps.setString(6, description);
-			ps.setString(7, image_url);
-			ps.setString(8, price);
-			ps.setString(9, size);
-			ps.setString(10, width);
-			ps.setString(11, type);
+			ps.setString(3, color);
+			ps.setString(4, vendor);
+			ps.setString(5, category);
+			ps.setString(6, type);
+			ps.setString(7, description);
+			ps.setString(8, image_url);
+			ps.setString(9, price);
+			ps.setString(10, size);
+			ps.setString(11, width);
+			ps.setString(12, msrp);
 			
 			return ps.executeUpdate() == 1;
 		} catch (Exception e) {
@@ -172,5 +172,21 @@ public class MySQLConnection implements DBConnection {
 			e.printStackTrace();
 		}
 		return false;	
+	}
+	@Override
+	public boolean deleteShoses (String id) {
+		if (conn == null) {
+			System.err.println("DB connection failed");
+			return false;
+		}
+		try {
+			String sql = "DELETE IGNORE FROM shoses where shoses_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			return ps.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

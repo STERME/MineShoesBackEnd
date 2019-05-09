@@ -15,6 +15,7 @@ public class shoses {
 	private String price;
 	private String size;
 	private String width;
+	private String msrp;
 	
 	private shoses(ShosesBuilder builder) {
 		this.shoseId = builder.shoseId;
@@ -28,6 +29,7 @@ public class shoses {
 		this.size = builder.size;
 		this.width = builder.width;
 		this.name = builder.name;
+		this.msrp = builder.msrp;
 	}
 	
 	public String getShoseId() {
@@ -84,6 +86,8 @@ public class shoses {
 			  object.put("price", price);
 			  object.put("size", size);
 			  object.put("width", width);
+			  object.put("type", type);
+			  object.put("msrp", msrp);
 		  } catch (Exception e) {
 			  e.printStackTrace();
 		  }
@@ -103,9 +107,14 @@ public class shoses {
 		private String price;
 		private String size;
 		private String width;
+		private String msrp;
 		
 		public ShosesBuilder setShoseId(String shoseId) {
 			this.shoseId = shoseId;
+			return this;
+		}
+		public ShosesBuilder setMsrp(String msrp) {
+			this.msrp = msrp;
 			return this;
 		}
 		
@@ -115,7 +124,7 @@ public class shoses {
 		}
 		
 		public ShosesBuilder setName(String name) {
-			this.name = category;
+			this.name = name;
 			return this;
 		}
 		
